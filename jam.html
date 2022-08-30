@@ -1,0 +1,69 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+  
+<head> 
+    <meta charset="UTF-8" /> 
+    <meta name="viewport" content= 
+        "width=device-width,  
+        initial-scale=1.0" /> 
+    <title>Digital Clock</title> 
+    <style> 
+        body { background: black;}
+		.clock {
+		    position: relative;
+		    top: 100%;
+		    color: #fff;
+		    font-size: 18px;
+		    font-family: Calibri;
+		    letter-spacing: 2px;
+		}
+    </style> 
+</head> 
+  
+<body style="background: #000">
+    <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
+  
+    <script> 
+    function showTime(){
+        var dt = new Date();
+        var weekday = new Array(7);
+	       	weekday[0] = "Sun";
+	       	weekday[1] = "Mon";
+	       	weekday[2] = "Tue";
+	       	weekday[3] = "Wed";
+	       	weekday[4] = "Thu";
+	       	weekday[5] = "Fri";
+        	weekday[6] = "Sat";
+	    var day   = weekday[dt.getDay()];
+        var date  = dt.getDate()
+        var month = dt.getMonth()+1;
+        var year  = dt.getFullYear();
+        var today = day+","+date+"-"+month+"-"+year+"\n"
+        var h = dt.getHours(); // 0 - 23
+        var m = dt.getMinutes(); // 0 - 59
+        var s = dt.getSeconds(); // 0 - 59
+        var session = "AM";
+    
+        if(h == 0){
+            h = 12;
+        }
+    
+        if(h > 12){
+            h = h - 12;
+            session = "PM";
+        }
+    
+        h = (h < 10) ? "0" + h : h;
+        m = (m < 10) ? "0" + m : m;
+        s = (s < 10) ? "0" + s : s;
+    
+        var time = today + h + ":" + m + ":" + s + " " + session;
+        document.getElementById("MyClockDisplay").innerText   = time;
+        document.getElementById("MyClockDisplay").textContent = time;
+        setTimeout(showTime, 1000);
+    }
+    showTime();
+    </script> 
+</body> 
+  
+</html> 
